@@ -67,8 +67,10 @@ def line_breaker(board, green_or_blue):
                     if board[i][j][1] == 0:
                         for z in range(1, i+1):
                             if board[i-z][j][1] == 1:
-                                if board[i-z][j][0] == green_or_blue and j != 3:
-                                    if board[i][j+1][1] == 0 and board[i-z][j+1][1] == 1:
+                                if board[i-z][j][0] == green_or_blue:
+                                    if j != 3 and board[i-z][j+1][1] == 1:
+                                        if 1 in [board[x][j+1][1] for x in range(i, i-z, -1)]:
+                                            break
                                         board[i][j+1] = board[i-z][j+1]
                                         board[i-z][j+1] = [0, 0]
                                     else:
